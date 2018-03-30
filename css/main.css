@@ -1731,6 +1731,24 @@ section.offer .step-1 input {
   margin-left: -140px;
 }
 
+.main-banner .quote {
+  width: 70%;
+  margin: 100px 0 0 0;
+  text-align: left;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.main-banner .quote h1 {
+  font-size: 70px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.main-banner .quote p {
+  font-size: 25px;
+}
+
 .center-align-content {
   display: flex;
   flex-wrap: wrap;
