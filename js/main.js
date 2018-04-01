@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 	setTimeout(function () {
 		showPromotionPopup();
-	}, 2000);
+	}, 7000);
 
 
 	matchHeights($('.trainer'));
@@ -245,7 +245,7 @@ var showPromotionPopup = (function () {
 
 	var open = false;
 
-	if($('#freePdf').length === 0){// || !!localStorage.saarthiDemoClassSignupViewModal) {
+	if($('#freePdf').length === 0 || !!localStorage.saarthiDemoClassSignupViewModal) {
 		var a = function () {};
         return a;
     }
