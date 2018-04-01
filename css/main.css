@@ -1130,6 +1130,16 @@ section.offer .step-1 input {
   color: red;
 }
 
+.offer .inner .small-text.check-telno {
+  display: none;
+  color: red;
+}
+
+.offer .inner .small-text.all-fields-required {
+  display: none;
+  color: red;
+}
+
 .offer .inner .content {
   padding: 4px 0 15px;
 }

@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 	setTimeout(function () {
 		showPromotionPopup();
-	}, 7000);
+	}, 2000);
 
 
 	matchHeights($('.trainer'));
@@ -130,14 +130,23 @@ $(document).ready(function () {
 
 
 // Initialize Firebase
+// var config = {
+// 	apiKey: "AIzaSyCzZadP-90PJzNIfjUfesek8V-Q1OBucPs",
+// 	authDomain: "saarthi-career.firebaseapp.com",
+// 	databaseURL: "https://saarthi-career.firebaseio.com",
+// 	projectId: "saarthi-career",
+// 	storageBucket: "saarthi-career.appspot.com",
+// 	messagingSenderId: "525172349655"
+// };
 var config = {
-	apiKey: "AIzaSyCzZadP-90PJzNIfjUfesek8V-Q1OBucPs",
-	authDomain: "saarthi-career.firebaseapp.com",
-	databaseURL: "https://saarthi-career.firebaseio.com",
-	projectId: "saarthi-career",
-	storageBucket: "saarthi-career.appspot.com",
-	messagingSenderId: "525172349655"
+	apiKey: "AIzaSyCo9fDGPDTU8g2NnIBbrQvi7jkyCR6A0sw ",
+	authDomain: "testproject-c1744.firebaseapp.com",
+	databaseURL: "https://testproject-c1744.firebaseio.com/",
+	projectId: "testproject-c1744",
+	storageBucket: "testproject-c1744.appspot.com",
+	messagingSenderId: "522612893141"
 };
+
 firebase.initializeApp(config);
 
 function validateEmail(email) {
@@ -145,20 +154,56 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-$('.step-1 .form-button').on('click', function (e) {
+$('.step-1 .button').on('click', function (e) {
 
+	var firstName = $(this).parents('.offer').find('.firstName').val().trim();
+	var lastName = $(this).parents('.offer').find('.lastName').val().trim();
+	var college = $(this).parents('.offer').find('.college').val().trim();
+	var yearOfPassing = $(this).parents('.offer').find('.yearPassout').val().trim();
+	var telNo = $(this).parents('.offer').find('.telNo').val().trim();
 	var email = $(this).parents('.offer').find('.freeEmail').val().trim();
-	if(email != null && email.length > 0 && validateEmail(email)) {
+
+	var isValidData = true;
+
+	if(firstName == null || firstName.length == 0) {
+		$(this).parents('.offer').find('.all-fields-required').show();
+		isValidData = false;
+	}
+	if(lastName == null || lastName.length == 0) {
+		$(this).parents('.offer').find('.all-fields-required').show();
+		isValidData = false;
+	}
+	if(college == null || college.length == 0) {
+		$(this).parents('.offer').find('.all-fields-required').show();
+		isValidData = false;
+	}
+	if(yearOfPassing == null || yearOfPassing.length == 0) {
+		$(this).parents('.offer').find('.all-fields-required').show();
+		isValidData = false;
+	}
+	if(telNo == null || telNo.length != 10) {
+		$(this).parents('.offer').find('.check-telno').show();
+		isValidData = false;
+	}
+	if(email == null || email.length == 0 || !validateEmail(email)) {
+		$(this).parents('.offer').find('.check-email').show();
+		isValidData = false;
+	}
+
+	if(isValidData) {
 		$('.step').hide();
     	$('.step-2').show();
     	data = {
-        	"email" : email
-    	};
-		
+			"firstName" : firstName,
+			"lastName": lastName,
+			"college": college,
+			"yearPassout": yearOfPassing,
+			"phone": phone,
+			"email" : email,
+			"time": Date()
+		};
 		var signUp = firebase.database().ref('signUp').push();
     	signUp.set(data);
-	}	else {
-		$(this).parents('.offer').find('.check-email').show();
 	}
 });
 
@@ -200,7 +245,7 @@ var showPromotionPopup = (function () {
 
 	var open = false;
 
-	if($('#freePdf').length === 0 || !!localStorage.saarthiDemoClassSignupViewModal) {
+	if($('#freePdf').length === 0){// || !!localStorage.saarthiDemoClassSignupViewModal) {
 		var a = function () {};
         return a;
     }
