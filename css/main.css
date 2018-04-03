@@ -1764,3 +1764,13 @@ section.offer .step-1 input {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.whatWeDo {
+  padding: 20px 0px 30px;
+  background-color: rgba(238,238,238,0.5);
+}
+/* .sliders .slick-arrow {
+  background-color: #000;
+  opacity: 0.1;
+  padding: 80px 0px;
+} */
